@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Наша корзина:</h1>
+{% for item in games%}
+<div class="col-md6 border rounded">
+    <h2 class="element">{{item.name}}</h2>
+    <div style="display: flex;
+  font-size: 1.5rem;">
+        {{count[item.id]}}x
+    </div>
+    <a href="/cart_game_delete/{{ item.id }}" class="btn btn-danger">
+        Удалить
+    </a>
+    <div style="color:#FFA500;">
+        Цена - {{item.price}} Гео
+    </div>
+    <div class="element">
+        {{item.description[:127]}}
+    </div>
+</div>
+{% endfor %}
+<a href="/games" class="btn btn-secondary mb-4">Назад</a>
+<h2>Всего: {{total}} Гео</h2>
+<a href="/cart_buy/{{ total }}" class="btn btn-danger">
+        Оплатить
+</a>
+<style>
+.element {
+    word-wrap: break-word;
+}
+</style>
+{% endblock %}

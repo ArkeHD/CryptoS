@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="game-page">
+    <div class="game-card">
+        <div class="game-header">
+            <h1 class="game-title">{{ name }}</h1>
+            <div class="price-badge">
+                {{ price|int }} Гео
+            </div>
+        </div>
+        <div class="game-content">
+            <div class="game-info">
+                <div class="info-section">
+                    <span class="label">Автор:</span>
+                    <span class="value">{{ author }}</span>
+                </div>
+                <div class="info-section">
+                    <span class="label">Жанры:</span>
+                    <span class="value">{{ ganre }}</span>
+                </div>
+                <div class="description-box">
+                    <h3>Описание:</h3>
+                    <p>{{ description }}</p>
+                </div>
+            </div>
+            <div class="action-buttons">
+                {% if current_user.name != author %}
+                    <a href="/games_add/{{ id }}" class="btn primary-btn">
+                        В корзину
+                    </a>
+                {% endif %}
+                <a href="/games" class="btn back-btn">
+                    Назад
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .game-page {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+    .game-card {
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        padding: 2rem;
+    }
+    .game-header {
+        border-bottom: 2px solid #eee;
+        padding-bottom: 1rem;
+        margin-bottom: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .game-title {
+        font-size: 2rem;
+        margin: 0;
+        color: #333;
+    }
+    .price-badge {
+        background: #f5f5f5;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-weight: bold;
+    }
+    .description-box {
+        background: #f9f9f9;
+        padding: 1.5rem;
+        border-radius: 6px;
+        margin: 1.5rem 0;
+    }
+    .description-box h3 {
+        margin-top: 0;
+        color: #666;
+        font-size: 1.1rem;
+    }
+    .info-section {
+        margin: 1rem 0;
+        font-size: 1.1rem;
+    }
+    .label {
+        color: #666;
+        margin-right: 0.5rem;
+    }
+    .action-buttons {
+        margin-top: 2rem;
+        display: flex;
+        gap: 1rem;
+    }
+    .btn {
+        padding: 0.8rem 1.5rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.2s;
+    }
+    .primary-btn {
+        background: #007bff;
+        color: white;
+    }
+    .primary-btn:hover {
+        background: #0056b3;
+    }
+    .back-btn {
+        background: #f8f9fa;
+        color: #333;
+        border: 1px solid #ddd;
+    }
+    .back-btn:hover {
+        background: #e9ecef;
+    }
+</style>
+{% endblock %}

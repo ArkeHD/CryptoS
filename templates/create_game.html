@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">{{ title }}</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    {{ form.photo }}
+    {% for error in form.photo.errors %}
+        <span style="color: red;">{{ error }}</span>
+    {% endfor %}
+        <div class="form-group">
+            {{ form.name.label(class="form-control-label") }}
+            {{ form.name(class="form-control") }}
+            {% for error in form.name.errors %}
+                <small class="form-text text-danger">{{ error }}</small>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            {{ form.description.label(class="form-control-label") }}
+            {{ form.description(class="form-control", rows=4) }}
+            {% for error in form.description.errors %}
+                <small class="form-text text-danger">{{ error }}</small>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            {{ form.price.label(class="form-control-label") }}
+            {{ form.price(class="form-control") }}
+            {% for error in form.price.errors %}
+                <small class="form-text text-danger">{{ error }}</small>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            {{ form.genres.label(class="form-control-label") }}
+            {{ form.genres(class="form-control", size=6) }}
+            <small class="form-text text-muted">Удерживайте Ctrl для выбора нескольких жанров</small>
+            {% for error in form.genres.errors %}
+                <small class="form-text text-danger">{{ error }}</small>
+            {% endfor %}
+        </div>
+
+        <div class="form-group mt-4">
+            {{ form.submit(class="btn btn-primary mr-2") }}
+            {{ form.back(class="btn btn-secondary") }}
+        </div>
+    </form>
+</div>
+{% endblock %}
